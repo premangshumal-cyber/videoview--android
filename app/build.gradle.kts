@@ -61,6 +61,10 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.coil.video)
 
+    // Embedded, opt-in local-network media catalog. No cloud backend.
+    implementation("io.ktor:ktor-server-core-jvm:2.3.13")
+    implementation("io.ktor:ktor-server-cio-jvm:2.3.13")
+
     testImplementation(libs.junit)
     testImplementation(libs.kotlinx.coroutines.test)
 }
