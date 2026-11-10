@@ -1,0 +1,58 @@
+name: Import verified KinePulse source
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/import.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import-source:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Verify archive and restore original project files
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import base64, bz2, hashlib, io, pathlib, tarfile
+          root = pathlib.Path(".")
+          parts = sorted(pathlib.Path(".kinepulse_import").glob("part*.b64"))
+          assert len(parts) == 6, f"Expected six parts, got {len(parts)}"
+          stream = "".join(p.read_text(encoding="ascii") for p in parts)
+          compressed = base64.b64decode(stream, validate=True)
+          assert hashlib.sha256(compressed).hexdigest() == "a97e0ffda122a06423cdd501039bca7fb1adba4a6098b2d062aa6c4e73be7b39", "Archive SHA mismatch"
+          raw = bz2.decompress(compressed)
+          assert hashlib.sha256(raw).hexdigest() == "0ebb4d02aa916297b36423adc7bf33fd7e413379b708e3cdef4fa01349b669c6", "Source SHA mismatch"
+          with tarfile.open(fileobj=io.BytesIO(raw), mode="r:") as archive:
+              files = [m for m in archive if m.isfile()]
+              assert len(files) == 59, f"Expected 59 files, got {len(files)}"
+              for member in files:
+                  path = pathlib.PurePosixPath(member.name)
+                  assert not path.is_absolute() and ".." not in path.parts
+                  # The build workflow is installed separately with GitHub connector
+                  # to avoid a GitHub Actions token trying to modify workflows.
+                  if member.name == ".github/workflows/build-apk.yml":
+                      continue
+                  destination = root.joinpath(*path.parts)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(archive.extractfile(member).read())
+          print("Verified and restored", len(files) - 1, "original source files")
+          PY
+
+      - name: Commit complete Android source to main
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf .kinepulse_import
+          git add -A
+          git diff --cached --stat
+          git commit -m "Import complete KinePulse VideoView Android project"
+          git push origin HEAD:main
