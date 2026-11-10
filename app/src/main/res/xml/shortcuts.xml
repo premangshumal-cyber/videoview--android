@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@android:drawable/ic_media_play"
+        android:shortcutId="resume_queue"
+        android:shortcutShortLabel="@string/resume_last_queue">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.kinepulse.player.ui.main.MainActivity"
+            android:targetPackage="com.kinepulse.player">
+            <extra android:name="shortcut_target" android:value="resume" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@android:drawable/ic_menu_view"
+        android:shortcutId="browse_files"
+        android:shortcutShortLabel="@string/add_custom_directory_saf">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.kinepulse.player.ui.main.MainActivity"
+            android:targetPackage="com.kinepulse.player">
+            <extra android:name="shortcut_target" android:value="browse" />
+        </intent>
+    </shortcut>
+</shortcuts>

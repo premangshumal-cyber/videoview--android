@@ -1,0 +1,2 @@
+-keep class com.kinepulse.player.data.db.** { *; }
+-dontwarn java.awt.**

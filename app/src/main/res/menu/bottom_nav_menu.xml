@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_video" android:icon="@android:drawable/ic_media_play" android:title="Video" />
+    <item android:id="@+id/nav_audio" android:icon="@android:drawable/ic_lock_silent_mode_off" android:title="Audio" />
+    <item android:id="@+id/nav_browse" android:icon="@android:drawable/ic_menu_view" android:title="Browse" />
+    <item android:id="@+id/nav_playlists" android:icon="@android:drawable/ic_menu_sort_by_size" android:title="Playlists" />
+    <item android:id="@+id/nav_more" android:icon="@android:drawable/ic_menu_more" android:title="More" />
+</menu>

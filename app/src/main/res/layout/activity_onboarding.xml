@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:text="@string/onboarding_tagline" />
+
+    <RadioGroup
+        android:id="@+id/rgTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp">
+        <RadioButton android:id="@+id/rbSystem" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="true" android:text="System Default" />
+        <RadioButton android:id="@+id/rbLight" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Light Theme" />
+        <RadioButton android:id="@+id/rbDark" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dark Slate" />
+        <RadioButton android:id="@+id/rbBlack" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="True Black (AMOLED)" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnGrantStandardMedia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/grant_media_permissions" />
+
+    <Button
+        android:id="@+id/btnStreamsOnly"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/streams_only_no_permission" />
+</LinearLayout>

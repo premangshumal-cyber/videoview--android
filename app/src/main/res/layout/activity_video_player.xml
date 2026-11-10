@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/videoContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:clipChildren="true">
+
+    <com.kinepulse.player.ui.player.ResizableVideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <com.kinepulse.player.player.subtitle.SubtitleRendererView
+        android:id="@+id/subtitleRenderer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBuffering"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tvGestureIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#AA000000"
+        android:padding="12dp"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/hudContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        android:padding="12dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:src="@android:drawable/ic_menu_revert"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvPlayerTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingHorizontal="8dp"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintEnd_toStartOf="@id/tvClock"
+            app:layout_constraintStart_toEndOf="@id/btnBack"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <TextView
+            android:id="@+id/tvClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="8dp"
+            android:textColor="#DDFFFFFF"
+            app:layout_constraintBottom_toBottomOf="@id/btnBack"
+            app:layout_constraintEnd_toStartOf="@id/btnScreenshot"
+            app:layout_constraintTop_toTopOf="@id/btnBack" />
+
+        <ImageButton
+            android:id="@+id/btnScreenshot"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/take_screenshot"
+            android:src="@android:drawable/ic_menu_camera"
+            app:layout_constraintEnd_toStartOf="@id/btnPip"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFFFFF" />
+
+        <ImageButton
+            android:id="@+id/btnPip"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/pip_mode"
+            android:src="@android:drawable/ic_menu_crop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#FFFFFF" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/seekBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnPip">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1.00x" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSubtitleDelay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sub: 0ms" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipSleepTimer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sleep_timer" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCurrentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/transportRow"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/tvCurrentTime"
+            app:layout_constraintEnd_toStartOf="@id/tvTotalTime"
+            app:layout_constraintStart_toEndOf="@id/tvCurrentTime"
+            app:layout_constraintTop_toTopOf="@id/tvCurrentTime" />
+
+        <TextView
+            android:id="@+id/tvTotalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toTopOf="@id/transportRow"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/transportRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <ImageButton
+                android:id="@+id/btnLock"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/lock_player"
+                android:src="@android:drawable/ic_lock_lock"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnTracks"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/tracks_and_subtitles"
+                android:src="@android:drawable/ic_menu_sort_by_size"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnOrientation"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/screen_orientation"
+                android:src="@android:drawable/ic_menu_always_landscape_portrait"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnPrev"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/previous"
+                android:src="@android:drawable/ic_media_previous"
+                app:tint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnRewind"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="-10s"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btnPlayPause"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/play_pause"
+                android:src="@android:drawable/ic_media_pause"
+                app:tint="#FF6D00" />
+
+            <Button
+                android:id="@+id/btnForward"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="+10s"
+                android:textColor="#FFFFFF"
+                android:visibility="gone" />
+
+            <ImageButton
+                android:id="@+id/btnNext"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/next"
+                android:src="@android:drawable/ic_media_next"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnAspectRatio"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/aspect_ratio"
+                android:src="@android:drawable/ic_menu_gallery"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnAdvancedOptions"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/advanced_options"
+                android:src="@android:drawable/ic_menu_more"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/lockOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUnlockSwipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="36dp"
+            android:text="@string/tap_to_unlock" />
+    </FrameLayout>
+
+</FrameLayout>

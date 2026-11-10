@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Interface &amp; Theme">
+        <ListPreference
+            app:defaultValue="system"
+            app:entries="@array/theme_entries"
+            app:entryValues="@array/theme_values"
+            app:key="app_theme"
+            app:title="DayNight Theme"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="show_headers"
+            app:title="Show section headers" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="media_seen"
+            app:title="Show seen video marker" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="playlist_mode_video"
+            app:title="Video playlist mode (play all from tapped)" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Video Playback &amp; Controls">
+        <ListPreference
+            app:defaultValue="ask"
+            app:entries="@array/resume_entries"
+            app:entryValues="@array/resume_values"
+            app:key="video_confirm_resume"
+            app:title="Resume played videos"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            app:defaultValue="pip"
+            app:entries="@array/switch_entries"
+            app:entryValues="@array/switch_values"
+            app:key="video_action_switch"
+            app:title="Switch-away action"
+            app:useSimpleSummaryProvider="true" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="always_fast_seek"
+            app:title="Always use fast seek (keyframe)" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="audio_boost"
+            app:title="Audio boost up to 200%" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="enable_seek_buttons"
+            app:title="Show Rewind/Forward seek buttons in HUD" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Player Gestures">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="enable_brightness_gesture"
+            app:title="Vertical swipe left: Brightness" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="save_brightness"
+            app:title="Save brightness level between videos" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="enable_volume_gesture"
+            app:title="Vertical swipe right: Volume" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="enable_swipe_seek"
+            app:title="Horizontal swipe: Seek with preview" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="enable_scale_gesture"
+            app:title="Two-finger pinch: Zoom video" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="enable_double_tap_seek"
+            app:title="Double-tap edges: Seek -/+ 10s" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="enable_double_tap_play"
+            app:title="Double-tap center: Play/Pause" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="enable_fastplay"
+            app:title="Tap-and-hold: Fastplay (2.0x)" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Subtitles">
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="subtitles_autoload"
+            app:title="Auto-load external subtitles" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="subtitles_bold"
+            app:title="Bold subtitle text" />
+        <SwitchPreferenceCompat
+            app:defaultValue="false"
+            app:key="subtitles_background"
+            app:title="Opaque subtitle background box" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="subtitles_shadow"
+            app:title="Subtitle drop shadow" />
+        <SwitchPreferenceCompat
+            app:defaultValue="true"
+            app:key="subtitles_outline"
+            app:title="Subtitle stroke outline" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Network">
+        <ListPreference
+            app:defaultValue="ask"
+            app:entries="@array/metered_entries"
+            app:entryValues="@array/metered_values"
+            app:key="metered_connection"
+            app:title="Metered connection policy"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

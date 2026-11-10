@@ -1,0 +1,45 @@
+<resources>
+    <string-array name="theme_entries">
+        <item>System Default</item>
+        <item>Light</item>
+        <item>Dark</item>
+        <item>True Black (AMOLED)</item>
+    </string-array>
+    <string-array name="theme_values">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+        <item>black</item>
+    </string-array>
+
+    <string-array name="resume_entries">
+        <item>Always resume</item>
+        <item>Ask every time</item>
+        <item>Never resume</item>
+    </string-array>
+    <string-array name="resume_values">
+        <item>always</item>
+        <item>ask</item>
+        <item>never</item>
+    </string-array>
+
+    <string-array name="switch_entries">
+        <item>Continue in Picture-in-Picture</item>
+        <item>Pause video</item>
+    </string-array>
+    <string-array name="switch_values">
+        <item>pip</item>
+        <item>pause</item>
+    </string-array>
+
+    <string-array name="metered_entries">
+        <item>Ask before streaming</item>
+        <item>Always allow</item>
+        <item>Block on mobile data</item>
+    </string-array>
+    <string-array name="metered_values">
+        <item>ask</item>
+        <item>allow</item>
+        <item>block</item>
+    </string-array>
+</resources>
