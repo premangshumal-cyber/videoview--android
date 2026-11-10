@@ -18,6 +18,7 @@ import com.kinepulse.player.KinePulseApp
 import com.kinepulse.player.R
 import com.kinepulse.player.ui.player.VideoPlayerActivity
 import com.kinepulse.player.ui.settings.SettingsActivity
+import com.kinepulse.player.ui.remote.RemoteAccessActivity
 import kotlinx.coroutines.launch
 
 class MoreFragment : Fragment() {
@@ -38,6 +39,10 @@ class MoreFragment : Fragment() {
             text = getString(R.string.settings)
             setOnClickListener { startActivity(Intent(requireContext(), SettingsActivity::class.java)) }
         }
+        val btnRemote = Button(requireContext()).apply {
+            text = "Local Wi-Fi remote access"
+            setOnClickListener { startActivity(Intent(requireContext(), RemoteAccessActivity::class.java)) }
+        }
         val btnClearHistory = Button(requireContext()).apply {
             text = getString(R.string.clear_playback_history)
             setOnClickListener { lifecycleScope.launch { dao.clearHistory() } }
@@ -50,6 +55,7 @@ class MoreFragment : Fragment() {
 
         root.addView(tvAbout)
         root.addView(btnSettings)
+        root.addView(btnRemote)
         root.addView(btnClearHistory)
         root.addView(btnLicenses)
         root.addView(lvHistory)
