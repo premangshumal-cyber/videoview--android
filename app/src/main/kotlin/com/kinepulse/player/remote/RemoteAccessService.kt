@@ -15,6 +15,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.Cookie
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.ApplicationCall
+import io.ktor.server.application.call
 import io.ktor.server.cio.CIO
 import io.ktor.server.engine.ApplicationEngine
 import io.ktor.server.engine.embeddedServer
@@ -137,7 +138,7 @@ class RemoteAccessService : Service() {
                                     call.respond(HttpStatusCode.Unauthorized)
                                     return@get
                                 }
-                                val catalog = (application as KinePulseApp).repository.videos.first()
+                                val catalog = (this@RemoteAccessService.application as KinePulseApp).repository.videos.first()
                                 val json = JSONArray()
                                 for (video in catalog) {
                                     json.put(JSONObject()
@@ -154,7 +155,7 @@ class RemoteAccessService : Service() {
                                     call.respond(HttpStatusCode.Unauthorized)
                                     return@get
                                 }
-                                val catalog = (application as KinePulseApp).repository.audios.first()
+                                val catalog = (this@RemoteAccessService.application as KinePulseApp).repository.audios.first()
                                 val json = JSONArray()
                                 for (track in catalog) {
                                     json.put(JSONObject()
